@@ -1,6 +1,7 @@
 // Import necessary modules
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { config } from "dotenv";
 
 // Initial state
 const initialState = {
