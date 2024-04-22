@@ -181,7 +181,7 @@ function HotelPage() {
 
       <section>
         <div className="heading-Ucontainer" id="trending-hotel-heading">
-          <h1 className="section-heading">Hotel </h1>
+          <h1 className="section-heading">Hotel Rooms </h1>
           <img src={BlueUnderline} />
         </div>
 

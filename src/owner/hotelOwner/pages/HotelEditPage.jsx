@@ -50,8 +50,10 @@ function HotelEditPage() {
 
   const handlePriceChange = (e) => {
     const inputValue = e.target.value;
-    if (inputValue === "" || parseFloat(inputValue) >= 1) {
+    if (inputValue === "" || parseFloat(inputValue) >= 200) {
       setHotel({ ...hotel, price: inputValue });
+    } else if(parseFloat(inputValue) <= 200){
+      alert("Price must be greater than 200")
     }
   };
 

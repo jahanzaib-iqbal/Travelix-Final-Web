@@ -115,7 +115,7 @@ const Header = () => {
           Tours
         </Navbar.Link>
         <Navbar.Link as={NavLink} to={"/hotel"}>
-          Hotel
+          Hotel Rooms
         </Navbar.Link>
         <Navbar.Link as={NavLink} to={"/vehicle"}>
           Car Rental

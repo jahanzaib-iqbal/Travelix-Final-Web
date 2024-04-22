@@ -32,7 +32,7 @@ function HotelPage() {
   const [policies, setPolicies] = useState([""]);
   const [additionalServices, setAdditionalServices] = useState([""]);
   // const [maxGuestsAllowed, setMaxGuestsAllowed] = useState(1);
-  const [price, setPrice] = useState(1);
+  const [price, setPrice] = useState(200);
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
@@ -61,9 +61,12 @@ function HotelPage() {
   const handlePriceChange = (e) => {
     const inputValue = e.target.value;
     // Check if the input value is not empty and is not a negative number
-    if (inputValue === "" || parseFloat(inputValue) >= 1) {
+    if (inputValue === "" || parseFloat(inputValue) >= 200) {
       // Update the price state only if it's either empty or a non-negative number
       setPrice(inputValue);
+    }
+    else if(parseFloat(inputValue) <= 200){
+      alert("Price must be greater than 200")
     }
   };
 
@@ -158,7 +161,7 @@ function HotelPage() {
           setPolicies([""]);
           setAdditionalServices([""]);
           // setMaxGuestsAllowed(1);
-          setPrice(1);
+          setPrice(200);
           setSelectedFiles([]);
           setLatitude();
           setLongitude();
