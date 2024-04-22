@@ -37,7 +37,9 @@ const Feedbacks = () => {
       setLoading(true);
       const { data } = await axios.put(
         `https://travelix-backend-v2.vercel.app/api/bookings/updateFeedback/${targetId}`
+        
       );
+      console.log("Feedback Respose Data",data)
       setSuccess(true);
     } catch (error) {
       const errorMessage =

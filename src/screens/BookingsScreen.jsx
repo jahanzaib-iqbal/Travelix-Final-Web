@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginSelector } from "../features/auth/loginSlice";
@@ -14,29 +14,40 @@ function BookingsScreen() {
   const { userInfo } = useSelector(loginSelector);
   const { userBookings, loading, error } = useSelector(userBookingsSelector);
 
-  console.log(userInfo);
+  const [sortAsc, setSortAsc] = useState(true); // State to track sorting order
+  const [sortedBookings, setSortedBookings] = useState([]); // State to hold sorted bookings
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (userInfo) {
-      console.log("Fetching user bookings...");
-      console.log(userInfo._id);
       dispatch(fetchUserBookings(userInfo._id));
     }
   }, [dispatch, userInfo]);
 
-  const currentDate = new Date();
+  useEffect(() => {
+    if (userBookings) {
+      // Sort the bookings based on booking date when userBookings changes
+      const sorted = [...userBookings].sort((a, b) => {
+        const dateA = new Date(a.bookingAt);
+        const dateB = new Date(b.bookingAt);
+        return sortAsc ? dateA - dateB : dateB - dateA;
+      });
+      setSortedBookings(sorted);
+    }
+  }, [userBookings, sortAsc]);
 
-  console.log(currentDate);
+  const handleSortToggle = () => {
+    setSortAsc(!sortAsc);
+  };
+
+  const currentDate = new Date();
 
   const handleEndDateButtonClick = (targetId) => {
     navigate(`/feedback/${targetId}`);
   };
-  if (userBookings) {
-    console.log(userBookings);
-  }
+
   return (
     <div className="container mx-auto mt-10">
       {loading ? (
@@ -45,8 +56,13 @@ function BookingsScreen() {
         <Message>{error}</Message>
       ) : (
         <div className="jb-bookings-main-container">
-          {userBookings ? (
-            userBookings.map((booking) => (
+        
+          <div className="sorting-icon" onClick={handleSortToggle}>
+          <p className=""><strong> Sort by Time</strong></p>
+            {sortAsc ? "Latest First⬇️" : "Oldest First⬆️"}
+          </div>
+          {sortedBookings.length ? (
+            sortedBookings.map((booking) => (
               <div key={booking._id} className="jb-booking-card">
                 <h2 className="text-xl font-bold mb-4">
                   Booked a
@@ -78,14 +94,13 @@ function BookingsScreen() {
                       <strong className="jb-strong">Price: </strong>
                       {booking.bookedItem.price} PKR
                     </p>
-         
 
                     <p>
                       <strong className="jb-strong">Location : </strong>
                       {booking?.bookedItem?.item?.location ||
                         booking?.bookedItem?.item?.place}
                     </p>
-                               
+
                     <strong className="jb-strong">Booked At: </strong>
                     {booking?.bookingAt && (
                       <span style={{ color: "#000" }}>
@@ -96,8 +111,6 @@ function BookingsScreen() {
                       <strong className="jb-strong">Description : </strong>{" "}
                       {booking?.bookedItem?.item?.description}
                     </p>
-
-                   
                   </div>
                 </div>
 
@@ -110,8 +123,11 @@ function BookingsScreen() {
                 {((!booking.feedbackGiven &&
                   currentDate >
                     new Date(booking.bookedItem.tourDate?.finishDate)) ||
-                  currentDate >
-                    new Date(booking.bookedItem.bookingDate?.finishDate)) && (
+                  (!booking.feedbackGiven &&
+                    currentDate >
+                      new Date(
+                        booking.bookedItem.bookingDate?.finishDate
+                      ))) && (
                   <button
                     className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4"
                     onClick={() =>

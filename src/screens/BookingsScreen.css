@@ -42,3 +42,20 @@
 
 }
 
+
+.sorting-icon {
+  cursor: pointer;
+  font-size: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  background-color: #ebe8e8;
+  margin: auto;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+}
+
+.sorting-icon:hover {
+  color: #007bff; /* Change color on hover */
+}
