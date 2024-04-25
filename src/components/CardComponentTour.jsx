@@ -94,7 +94,7 @@ function CardComponentTour({ tour }) {
         <h4 className="price"> {price} PKR </h4>
         <div>
           <button
-            className="btn bg-[#008395] w-[100%]"
+            className="btn bg-[#008395] w-[100%] text-white"
             onClick={() => handlePackageDetails(tour)}
           >
             View Details

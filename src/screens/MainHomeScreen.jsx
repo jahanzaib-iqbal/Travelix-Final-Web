@@ -28,13 +28,7 @@ import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 
 import qouteIcon from "../assets/icons/right-quote (2).png";
 import user1 from "../assets/images/user (4).jpg";
-import user2 from "../assets/images/user (4).jpg";
-import user3 from "../assets/images/user (4).jpg";
-import user4 from "../assets/images/user (4).jpg";
-import user5 from "../assets/images/user (4).jpg";
-import user6 from "../assets/images/user (4).jpg";
-import user7 from "../assets/images/user (4).jpg";
-import user8 from "../assets/images/user (4).jpg";
+
 
 //   COMPONENTS
 // CARD

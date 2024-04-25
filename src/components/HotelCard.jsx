@@ -91,7 +91,7 @@ function HotelCard({ hotel }) {
         <h4 className="price"> {price} PKR </h4>
         <div>
           <button
-            className="btn bg-[#008395] w-[100%]"
+            className="btn bg-[#008395] w-[100%] text-white"
             onClick={() => handlePackageDetails(hotel)}
           >
             View Details

@@ -102,8 +102,8 @@ function HotelDetailPage() {
                 </div>
 
 
-                  {/* Policies */}
-                  <div className="j-key-detail-container">
+                {/* Policies */}
+                <div className="j-key-detail-container">
                   <h1 class="j-h1-detail">Policies</h1>
 
                   <div style={{ flex: 1 }}>
@@ -126,8 +126,8 @@ function HotelDetailPage() {
                   </div>
                 </div>
 
-                  {/* Additional Features */}
-                  <div className="j-key-detail-container">
+                {/* Additional Features */}
+                <div className="j-key-detail-container">
                   <h1 class="j-h1-detail">Additional Services</h1>
 
                   <div style={{ flex: 1 }}>
@@ -154,9 +154,7 @@ function HotelDetailPage() {
                   <h1 class="j-h1-detail">Price</h1>
                   <p className="j-detail-p">PKR {hotel.price} - Per Night</p>
                 </div>
-
               </div>
-              
             </div>
             <section className="section-feedback">
               {hotel.feedbacks?.map(
